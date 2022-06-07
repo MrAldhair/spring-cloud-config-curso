@@ -1,2 +1,7 @@
-server.port=9003
-spring.application.name=DTOMotocicleta-servicio
+spring:
+  application:
+    name: motocicleta-servicio
+  cloud:
+    config:
+      enabeld: true
+      uri: http://localhost:9003

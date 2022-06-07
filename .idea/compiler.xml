@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="automovil-servicio" />
         <module name="motocicleta-servicio" />
+        <module name="com-server-config" />
         <module name="usuario-servicio" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="automovil-servicio" options="-parameters" />
+      <module name="com-server-config" options="-parameters" />
       <module name="motocicleta-servicio" options="-parameters" />
       <module name="usuario-servicio" options="-parameters" />
     </option>
