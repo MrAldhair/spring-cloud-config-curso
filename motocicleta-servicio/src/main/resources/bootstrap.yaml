@@ -4,4 +4,4 @@ spring:
   cloud:
     config:
       enabeld: true
-      uri: http://localhost:9003
+      uri: http://localhost:9005
