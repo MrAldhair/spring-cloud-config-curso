@@ -1,6 +1,6 @@
 spring:
   application:
-    name: automovil-servicio
+    name: eureka-servicio
   cloud:
     config:
       enabeld: true

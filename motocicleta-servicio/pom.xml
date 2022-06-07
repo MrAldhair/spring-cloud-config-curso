@@ -8,10 +8,10 @@
 		<version>2.7.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>DTOMotocicleta-servicio</groupId>
-	<artifactId>DTOMotocicleta-servicio</artifactId>
+	<groupId>motocicleta-servicio</groupId>
+	<artifactId>motocicleta-servicio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DTOMotocicleta-servicio</name>
+	<name>motocicleta-servicio</name>
 	<description>Curso de Microservicios con Spring Boot y Spring cloud</description>
 	<properties>
 		<java.version>11</java.version>
@@ -59,6 +59,13 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bootstrap</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 			<version>3.1.1</version>
 		</dependency>
 

@@ -11,6 +11,7 @@
         <module name="motocicleta-servicio" />
         <module name="com-server-config" />
         <module name="usuario-servicio" />
+        <module name="eureka-servicio" />
       </profile>
     </annotationProcessing>
   </component>
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="automovil-servicio" options="-parameters" />
       <module name="com-server-config" options="-parameters" />
+      <module name="eureka-servicio" options="-parameters" />
       <module name="motocicleta-servicio" options="-parameters" />
       <module name="usuario-servicio" options="-parameters" />
     </option>
