@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 8888
 eureka:
   client:
     fetch-registry: true
@@ -21,10 +21,10 @@ spring:
           predicates:
             - Path=/usuario/**
         - id: automovil-servicio
-            uri: lb://automovil-servicio
-            predicates:
-              - Path=/automovil/**
+          uri: lb://automovil-servicio
+          predicates:
+            - Path=/automovil/**
         - id: motocicleta-servicio
-            uri: lb://motocicleta-servicio
-            predicates:
-              - Path=/motocicleta/**
+          uri: lb://motocicleta-servicio
+          predicates:
+            - Path=/motocicleta/**
