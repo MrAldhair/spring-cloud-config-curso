@@ -10,6 +10,7 @@
         <module name="automovil-servicio" />
         <module name="motocicleta-servicio" />
         <module name="com-server-config" />
+        <module name="gateway-servicio" />
         <module name="usuario-servicio" />
         <module name="eureka-servicio" />
       </profile>
@@ -20,6 +21,7 @@
       <module name="automovil-servicio" options="-parameters" />
       <module name="com-server-config" options="-parameters" />
       <module name="eureka-servicio" options="-parameters" />
+      <module name="gateway-servicio" options="-parameters" />
       <module name="motocicleta-servicio" options="-parameters" />
       <module name="usuario-servicio" options="-parameters" />
     </option>

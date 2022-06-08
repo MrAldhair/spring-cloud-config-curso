@@ -1,0 +1,30 @@
+server:
+  port: 9001
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: usuario-servicio
+          uri: lb://usuario-servicio
+          predicates:
+            - Path=/usuario/**
+        - id: automovil-servicio
+            uri: lb://automovil-servicio
+            predicates:
+              - Path=/automovil/**
+        - id: motocicleta-servicio
+            uri: lb://motocicleta-servicio
+            predicates:
+              - Path=/motocicleta/**
