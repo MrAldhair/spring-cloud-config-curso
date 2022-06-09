@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "automovil-servicio", url = "http://localhost:9002/api/automoviles")
+@FeignClient(name = "automovil-servicio"/*, url = "http://localhost:9002/api/automoviles"*/)
 //@RequestMapping("/automoviles") esta notacion por algun motivo ya no funciona, investigar en la documentación el porque
 public interface AutomovilClienteFeign {
 
