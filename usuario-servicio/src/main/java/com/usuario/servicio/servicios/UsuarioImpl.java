@@ -88,12 +88,12 @@ public class UsuarioImpl{
 
     // Implementacion de RestTemplate
     public List<DTOAutomovil> getAutomovil(int idUsuario) {
-        List<DTOAutomovil> automoviles = restTemplate.getForObject("http://localhost:9002/api/automoviles/usuario/" + idUsuario, List.class);
+        List<DTOAutomovil> automoviles = restTemplate.getForObject("http://automovil-servicio/api/automoviles/usuario/" + idUsuario, List.class);
         return automoviles;
     }
 
     public List<DTOMotocicleta> getMotocicletas(int idUsuario) {
-        List<DTOMotocicleta> DTOMotocicletas = restTemplate.getForObject("http://localhost:9003/api/motocicletas/usuario/" + idUsuario, List.class);
+        List<DTOMotocicleta> DTOMotocicletas = restTemplate.getForObject("http://motocicleta-servicio/api/motocicletas/usuario/" + idUsuario, List.class);
         return DTOMotocicletas;
     }
 

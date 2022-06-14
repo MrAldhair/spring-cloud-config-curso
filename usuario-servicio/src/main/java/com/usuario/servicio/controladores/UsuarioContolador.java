@@ -116,7 +116,7 @@ public class UsuarioContolador {
         return new ResponseEntity("El usuario con el ID " + idUsuario + " tiene los autos en el taller", HttpStatus.OK);
     }
 
-    private ResponseEntity<List<DTOAutomovil>> fallBackSaveAuto(@PathVariable int idUsuario, DTOAutomovil automovil ,RuntimeException exception) {
+    private ResponseEntity<DTOAutomovil> fallBackSaveAuto(@PathVariable int idUsuario, DTOAutomovil automovil ,RuntimeException exception) {
         return new ResponseEntity("El usuario con el ID " + idUsuario + " no tiene dineero para la comprar de un automovil: " + automovil.getModelo(), HttpStatus.OK);
     }
 
@@ -124,11 +124,11 @@ public class UsuarioContolador {
         return new ResponseEntity("El usuario con el ID " + idUsuario + " tiene las motos en el taller", HttpStatus.OK);
     }
 
-    private ResponseEntity<List<DTOMotocicleta>> fallBackSaveMoto(@PathVariable int idUsuario, DTOMotocicleta motocicleta ,RuntimeException exception) {
+    private ResponseEntity<DTOMotocicleta> fallBackSaveMoto(@PathVariable int idUsuario, DTOMotocicleta motocicleta ,RuntimeException exception) {
         return new ResponseEntity("El usuario con el ID " + idUsuario + " no tiene dineero para la comprar de una motocicleta: " + motocicleta.getModelo(), HttpStatus.OK);
     }
 
-    private ResponseEntity<List<DTOMotocicleta>> fallBackGetAll(@PathVariable int idUsuario, RuntimeException exception) {
+    private ResponseEntity<Map<String,Object>> fallBackGetAll(@PathVariable int idUsuario, RuntimeException exception) {
         return new ResponseEntity("El usuario con el ID " + idUsuario + " tiene las motos en el taller", HttpStatus.OK);
     }
 
