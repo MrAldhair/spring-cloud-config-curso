@@ -4,7 +4,9 @@ import com.usuario.servicio.dto.DTOAutomovil;
 import com.usuario.servicio.dto.DTOMotocicleta;
 import com.usuario.servicio.entidades.Usuario;
 import com.usuario.servicio.servicios.UsuarioImpl;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +57,7 @@ public class UsuarioContolador {
 
     }
 
+    @CircuitBreaker(name = "automovilCB", fallbackMethod = "fallBackGetAutos")
     @GetMapping("/automoviles/{idUsuario}")
     public ResponseEntity<List<DTOAutomovil>> getAutos(@PathVariable int idUsuario){
         usuario =  usuarioImpl.getById(idUsuario);
@@ -71,6 +74,7 @@ public class UsuarioContolador {
 
     }
 
+    @CircuitBreaker(name = "motocicletaCB", fallbackMethod = "fallBackGetMotos")
     @GetMapping("/motocicletas/{idUsuario}")
     public ResponseEntity<List<DTOMotocicleta>> getMotos(@PathVariable int idUsuario){
         usuario =  usuarioImpl.getById(idUsuario);
@@ -87,23 +91,45 @@ public class UsuarioContolador {
 
     }
 
+    @CircuitBreaker(name = "automovilCB", fallbackMethod = "fallBackSaveAuto")
     @PostMapping("/automoviles/{idUsuario}")
     public ResponseEntity<DTOAutomovil> saveAuto(@PathVariable int idUsuario, @RequestBody DTOAutomovil DTOAutomovil){
         DTOAutomovil nuevoDTOAutomovil = usuarioImpl.saveAutomovil(idUsuario, DTOAutomovil);
         return ResponseEntity.ok(nuevoDTOAutomovil);
     }
 
+    @CircuitBreaker(name = "motocicletaCB", fallbackMethod = "fallBackSaveMoto")
     @PostMapping("/motocicletas/{idUsuario}")
     public ResponseEntity<DTOMotocicleta> saveMoto(@PathVariable int idUsuario, @RequestBody DTOMotocicleta dtoMotocicleta){
         DTOMotocicleta nuevaMotocicleta = usuarioImpl.saveMotocicleta(idUsuario, dtoMotocicleta);
         return ResponseEntity.ok(nuevaMotocicleta);
     }
 
+    @CircuitBreaker(name = "todosCB", fallbackMethod = "fallBackGetAll")
     @GetMapping("vehiculos/{idUsuario}")
     public ResponseEntity<Map<String,Object>> allVehiculos(@PathVariable int idUsuario) {
         Map<String, Object> resultado = usuarioImpl.getUserAndVehiculos(idUsuario);
         return ResponseEntity.ok(resultado);
     }
 
+    private ResponseEntity<List<DTOAutomovil>> fallBackGetAutos(@PathVariable int idUsuario, RuntimeException exception) {
+        return new ResponseEntity("El usuario con el ID " + idUsuario + " tiene los autos en el taller", HttpStatus.OK);
+    }
+
+    private ResponseEntity<List<DTOAutomovil>> fallBackSaveAuto(@PathVariable int idUsuario, DTOAutomovil automovil ,RuntimeException exception) {
+        return new ResponseEntity("El usuario con el ID " + idUsuario + " no tiene dineero para la comprar de un automovil: " + automovil.getModelo(), HttpStatus.OK);
+    }
+
+    private ResponseEntity<List<DTOMotocicleta>> fallBackGetMotos(@PathVariable int idUsuario, RuntimeException exception) {
+        return new ResponseEntity("El usuario con el ID " + idUsuario + " tiene las motos en el taller", HttpStatus.OK);
+    }
+
+    private ResponseEntity<List<DTOMotocicleta>> fallBackSaveMoto(@PathVariable int idUsuario, DTOMotocicleta motocicleta ,RuntimeException exception) {
+        return new ResponseEntity("El usuario con el ID " + idUsuario + " no tiene dineero para la comprar de una motocicleta: " + motocicleta.getModelo(), HttpStatus.OK);
+    }
+
+    private ResponseEntity<List<DTOMotocicleta>> fallBackGetAll(@PathVariable int idUsuario, RuntimeException exception) {
+        return new ResponseEntity("El usuario con el ID " + idUsuario + " tiene las motos en el taller", HttpStatus.OK);
+    }
 
 }
